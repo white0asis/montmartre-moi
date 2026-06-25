@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { sanityClient } from "@/sanity/client";
 import { homepageQuery } from "@/sanity/queries";
 import type { ArticleCardData, NavCategory } from "@/lib/types";
@@ -10,9 +9,7 @@ import styles from "./page.module.css";
 
 export const revalidate = 3600;
 
-// TODO: replace with the real URL once the "plan your walk" itinerary
-// builder (separate GitHub/Vercel project) is deployed.
-const PLAN_YOUR_WALK_URL = "#plan-your-walk-coming-soon";
+const PLAN_YOUR_WALK_URL = "https://montmartre-walk.vercel.app/";
 
 type HomepageData = {
   categories: NavCategory[];
@@ -83,9 +80,14 @@ export default async function Home() {
           </div>
           <div className={styles.planWalkCard}>
             <p className={styles.planWalkCardLabel}>Ready when you are</p>
-            <Link href={PLAN_YOUR_WALK_URL} className={styles.planWalkCta}>
+            <a
+              href={PLAN_YOUR_WALK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.planWalkCta}
+            >
               Start
-            </Link>
+            </a>
           </div>
         </div>
       </section>
