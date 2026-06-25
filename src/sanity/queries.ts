@@ -10,7 +10,7 @@ const cardFields = groq`
   excerpt,
   publishedAt,
   "readingTime": round(length(pt::text(body)) / 5 / 200),
-  "category": category->{title: name, "slug": slug.current},
+  "category": category->{"title": name, "slug": slug.current},
   "author": author->{name}
 `;
 
