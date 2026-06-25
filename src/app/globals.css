@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Montmartre Moi — Design System
+   Source : cahier des charges v1.0, section 4 (Design System)
+   ========================================================================== */
+
+:root {
+  /* Palette de couleurs */
+  --color-cream: #f5efe0; /* Fond principal de toutes les pages */
+  --color-dark-brown: #3d2b1f; /* Texte principal, footer, blocs sombres */
+  --color-sage: #7d9b76; /* Accent principal, CTA, tags, hover */
+  --color-terracotta: #c4622d; /* Accent chaud, tags catégorie, liens */
+  --color-cream-dark: #ede5d0; /* Bordures, séparateurs, fonds secondaires */
+
+  /* Typographie */
+  --font-heading-stack: var(--font-heading), "Cormorant Garamond", serif;
+  --font-body-stack: var(--font-body), "Inter", sans-serif;
+  --body-font-size: 17px;
+  --body-line-height: 1.75;
+
+  /* Couleurs sémantiques (alias) */
+  --background: var(--color-cream);
+  --foreground: var(--color-dark-brown);
+  --accent-primary: var(--color-sage);
+  --accent-secondary: var(--color-terracotta);
+  --border-color: var(--color-cream-dark);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body-stack);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+a {
+  color: var(--accent-secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-primary);
+}
+
+::selection {
+  background: var(--color-sage);
+  color: var(--color-cream);
+}
