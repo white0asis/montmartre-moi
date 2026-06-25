@@ -82,70 +82,91 @@
 
 .planWalk {
   display: flex;
-  gap: 48px;
+  gap: 32px;
   align-items: center;
   flex-wrap: wrap;
+  background: var(--color-cream-dark);
+  border-radius: 12px;
+  padding: 40px;
 }
 
 .planWalkText {
   flex: 1 1 55%;
-  min-width: 320px;
+  min-width: 280px;
 }
 
-.planWalkText p {
-  margin: 16px 0;
-  opacity: 0.85;
-  line-height: 1.6;
+.planWalkText p:first-child {
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 0 0 18px;
 }
 
 .planWalkList {
   list-style: none;
   padding: 0;
-  margin: 20px 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .planWalkList li {
-  padding-left: 22px;
+  padding-left: 20px;
   position: relative;
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.5;
 }
 
 .planWalkList li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 9px;
-  width: 10px;
-  height: 10px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
   background: var(--color-sage);
-  border-radius: 50%;
 }
 
 .planWalkCard {
-  flex: 1 1 35%;
+  flex: 1 1 36%;
   min-width: 260px;
-  background: var(--color-cream-dark);
+  background: var(--color-cream);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 40px 32px;
-  text-align: center;
+  padding: 32px;
 }
 
-.planWalkCardLabel {
+.planWalkCardEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-sage);
+  margin: 0 0 10px;
+}
+
+.planWalkCardTitle {
   font-family: var(--font-heading-stack);
-  font-style: italic;
-  font-size: 19px;
-  margin-bottom: 20px;
+  font-size: 22px;
   color: var(--color-dark-brown);
+  margin: 0 0 12px;
+}
+
+.planWalkCardText {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0 0 24px;
 }
 
 .planWalkCta {
-  display: inline-block;
+  display: block;
+  text-align: center;
   background: var(--color-sage);
   color: var(--color-cream);
   font-weight: 600;
-  padding: 14px 40px;
+  padding: 14px;
   border-radius: 4px;
   text-decoration: none;
   transition: opacity 0.15s ease;
@@ -158,6 +179,7 @@
 @media (max-width: 700px) {
   .planWalk {
     flex-direction: column;
+    padding: 28px;
   }
 }
 
@@ -205,27 +227,3 @@
 .startHereStep {
   font-family: var(--font-heading-stack);
   font-size: 26px;
-  color: var(--color-sage);
-}
-
-.editorialBreak {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-  padding: 64px 24px 96px;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.editorialIllustration {
-  opacity: 0.85;
-}
-
-.editorialQuote {
-  font-family: var(--font-heading-stack);
-  font-style: italic;
-  font-size: 24px;
-  color: var(--color-dark-brown);
-}
