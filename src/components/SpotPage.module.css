@@ -1,0 +1,172 @@
+.heroWrap {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.heroPlaceholder {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  background: linear-gradient(135deg, var(--color-cream-dark), var(--color-sage));
+  border-radius: 4px;
+}
+
+.badge {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: var(--color-terracotta);
+  color: var(--color-cream);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.main {
+  flex: 1 1 60%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-size: 38px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.galleryImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.mapWrap {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 320px;
+  border: 0;
+}
+
+.relatedTitle {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.sidebar {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoCard {
+  position: sticky;
+  top: 100px;
+  background: var(--color-cream-dark);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.infoTitle {
+  font-size: 19px;
+  margin-bottom: 16px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(61, 43, 31, 0.08);
+  padding-bottom: 8px;
+}
+
+.infoRow dt {
+  opacity: 0.65;
+}
+
+.infoRow dd {
+  text-align: right;
+  font-weight: 500;
+}
+
+.cta {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  background: var(--color-sage);
+  color: var(--color-cream);
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.cta:hover {
+  background: var(--color-terracotta);
+  color: var(--color-cream);
+}
+
+.tipCard {
+  background: var(--color-dark-brown);
+  color: var(--color-cream);
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.tipLabel {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+  margin-bottom: 8px;
+}

@@ -1,0 +1,57 @@
+.footer {
+  background: var(--color-dark-brown);
+  color: var(--color-cream);
+  margin-top: 80px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tagline {
+  font-family: var(--font-heading-stack);
+  font-style: italic;
+  color: var(--color-cream-dark);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-self: flex-start;
+}
+
+.links a {
+  color: var(--color-cream);
+}
+
+.links a:hover {
+  color: var(--color-sage);
+}
+
+.instagram {
+  color: var(--color-sage);
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-cream-dark);
+  padding: 20px 24px 32px;
+  border-top: 1px solid rgba(245, 239, 224, 0.12);
+  margin-top: 24px;
+}

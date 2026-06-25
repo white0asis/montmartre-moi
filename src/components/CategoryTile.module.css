@@ -1,0 +1,25 @@
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 16px;
+  background: var(--color-cream-dark);
+  border-radius: 4px;
+  min-height: 120px;
+  transition: background 0.2s ease;
+}
+
+.tile:hover {
+  background: var(--color-sage);
+}
+
+.tile:hover .name {
+  color: var(--color-cream);
+}
+
+.name {
+  font-family: var(--font-heading-stack);
+  font-size: 19px;
+  color: var(--color-dark-brown);
+}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 // Titres (H1, H2, H3) — Cormorant Garamond, serif
@@ -19,7 +21,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Montmartre Moi",
+  title: {
+    default: "Montmartre Moi — The way locals see it.",
+    template: "%s | Montmartre Moi",
+  },
   description:
     "Montmartre Moi — an English-language travel blog uncovering Montmartre beyond the postcard: history, food, hidden gems and practical tips, the way locals see it.",
 };
@@ -32,7 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${inter.variable}`}>
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
