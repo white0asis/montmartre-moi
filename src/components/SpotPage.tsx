@@ -13,27 +13,32 @@ export default function SpotPage({
   name,
   typeBadge,
   heroImage,
-  gallery = [],
+  gallery,
   description,
   practicalInfo,
   mapQuery,
   insiderTip,
   ctaLabel,
   ctaHref,
-  relatedArticles = [],
+  relatedArticles,
 }: {
   name: string;
   typeBadge: string;
   heroImage?: SanityImageSource;
-  gallery?: SanityImageSource[];
+  gallery?: SanityImageSource[] | null;
   description?: PortableTextBlock[];
   practicalInfo: PracticalInfoRow[];
   mapQuery?: string;
   insiderTip?: string;
   ctaLabel: string;
   ctaHref?: string;
-  relatedArticles?: ArticleCardData[];
+  relatedArticles?: ArticleCardData[] | null;
 }) {
+  // GROQ returns null (not undefined) for empty/unset arrays, so default
+  // parameter values above wouldn't catch it — normalize explicitly here.
+  const galleryList = gallery ?? [];
+  const relatedList = relatedArticles ?? [];
+
   return (
     <main>
       <div className={styles.heroWrap}>
@@ -58,9 +63,9 @@ export default function SpotPage({
 
           {description && <ArticleBody value={description} />}
 
-          {gallery.length > 0 && (
+          {galleryList.length > 0 && (
             <div className={styles.gallery}>
-              {gallery.map((img, i) => (
+              {galleryList.map((img, i) => (
                 <Image
                   key={i}
                   src={urlFor(img).width(500).height(380).url()}
@@ -85,11 +90,11 @@ export default function SpotPage({
             </div>
           )}
 
-          {relatedArticles.length > 0 && (
+          {relatedList.length > 0 && (
             <section className={styles.related}>
               <h2 className={styles.relatedTitle}>From the blog</h2>
               <div className={styles.relatedGrid}>
-                {relatedArticles.map((a) => (
+                {relatedList.map((a) => (
                   <ArticleCard key={a._id} article={a} />
                 ))}
               </div>
