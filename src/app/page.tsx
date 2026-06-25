@@ -39,16 +39,6 @@ export default async function Home() {
         </p>
       </section>
 
-      {categories.length > 0 && (
-        <section className={styles.section}>
-          <div className={styles.categoryGrid}>
-            {categories.map((cat) => (
-              <CategoryTile key={cat._id} category={cat} />
-            ))}
-          </div>
-        </section>
-      )}
-
       {firstPick && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Editor&rsquo;s picks</h2>
@@ -63,42 +53,63 @@ export default async function Home() {
         </section>
       )}
 
-      <section className={styles.section}>
-        <div className={styles.planWalk}>
+      <section className={styles.planWalkSection}>
+        <a
+          href={PLAN_YOUR_WALK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open the Montmartre walk generator"
+          className={styles.planWalk}
+        >
           <div className={styles.planWalkText}>
-            <p>
+            <p className={styles.planWalkIntro}>
               Answer a few questions and we&rsquo;ll map a Montmartre route made just
               for you.
             </p>
             <ul className={styles.planWalkList}>
               <li>
-                Pick what you&rsquo;re after (history, art, religious places, iconic
-                cinema locations).
+                <span className={styles.planWalkDot} />
+                <span>
+                  Pick what you&rsquo;re after (history, art, religious places, iconic
+                  cinema locations).
+                </span>
               </li>
-              <li>Set your pace and how long you&rsquo;ve got on the hill.</li>
               <li>
-                Choose to stop for a meal or a coffee at one of our recommended spots.
+                <span className={styles.planWalkDot} />
+                <span>Set your pace and how long you&rsquo;ve got on the hill.</span>
+              </li>
+              <li>
+                <span className={styles.planWalkDot} />
+                <span>
+                  Choose to stop for a meal or a coffee at one of our recommended
+                  spots.
+                </span>
               </li>
             </ul>
           </div>
-          <div className={styles.planWalkCard}>
-            <p className={styles.planWalkCardEyebrow}>Montmartre Walk</p>
-            <h3 className={styles.planWalkCardTitle}>Plan your walk</h3>
-            <p className={styles.planWalkCardText}>
-              Answer a few questions to build a tailor-made route through the streets
-              of the Montmartre hill.
-            </p>
-            <a
-              href={PLAN_YOUR_WALK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.planWalkCta}
-            >
-              Start
-            </a>
+          <div className={styles.planWalkVisual}>
+            <div className={styles.planWalkCard}>
+              <span className={styles.planWalkCardEyebrow}>Montmartre Walk</span>
+              <h3 className={styles.planWalkCardTitle}>Plan your walk</h3>
+              <p className={styles.planWalkCardText}>
+                Answer a few questions to build a tailor-made route through the
+                streets of the Montmartre hill.
+              </p>
+              <span className={styles.planWalkCta}>Start</span>
+            </div>
           </div>
-        </div>
+        </a>
       </section>
+
+      {categories.length > 0 && (
+        <section className={styles.section}>
+          <div className={styles.categoryGrid}>
+            {categories.map((cat) => (
+              <CategoryTile key={cat._id} category={cat} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className={styles.startHere}>
         <div className={styles.startHereInner}>
