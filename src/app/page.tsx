@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { sanityClient } from "@/sanity/client";
 import { homepageQuery } from "@/sanity/queries";
 import type { ArticleCardData, NavCategory } from "@/lib/types";
@@ -8,6 +9,10 @@ import Logo from "@/components/Logo";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
+
+// TODO: replace with the real URL once the "plan your walk" itinerary
+// builder (separate GitHub/Vercel project) is deployed.
+const PLAN_YOUR_WALK_URL = "#plan-your-walk-coming-soon";
 
 type HomepageData = {
   categories: NavCategory[];
@@ -60,6 +65,30 @@ export default async function Home() {
           </div>
         </section>
       )}
+
+      <section className={styles.section}>
+        <div className={styles.planWalk}>
+          <div className={styles.planWalkText}>
+            <h2 className={styles.sectionTitle}>Plan your walk</h2>
+            <p>
+              Tell us how much time you have and what you&rsquo;re into — we&rsquo;ll put
+              together a walking route through Montmartre that skips the queues and the
+              souvenir shops.
+            </p>
+            <ul className={styles.planWalkList}>
+              <li>Routes from 1 to 4 hours</li>
+              <li>Built around what you love — art, food, history, views</li>
+              <li>Practical stops: cafés, viewpoints, photo spots</li>
+            </ul>
+          </div>
+          <div className={styles.planWalkCard}>
+            <p className={styles.planWalkCardLabel}>Ready when you are</p>
+            <Link href={PLAN_YOUR_WALK_URL} className={styles.planWalkCta}>
+              Start
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className={styles.startHere}>
         <div className={styles.startHereInner}>

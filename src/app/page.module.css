@@ -80,6 +80,87 @@
   }
 }
 
+.planWalk {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.planWalkText {
+  flex: 1 1 55%;
+  min-width: 320px;
+}
+
+.planWalkText p {
+  margin: 16px 0;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.planWalkList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.planWalkList li {
+  padding-left: 22px;
+  position: relative;
+}
+
+.planWalkList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  background: var(--color-sage);
+  border-radius: 50%;
+}
+
+.planWalkCard {
+  flex: 1 1 35%;
+  min-width: 260px;
+  background: var(--color-cream-dark);
+  border-radius: 8px;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.planWalkCardLabel {
+  font-family: var(--font-heading-stack);
+  font-style: italic;
+  font-size: 19px;
+  margin-bottom: 20px;
+  color: var(--color-dark-brown);
+}
+
+.planWalkCta {
+  display: inline-block;
+  background: var(--color-sage);
+  color: var(--color-cream);
+  font-weight: 600;
+  padding: 14px 40px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.planWalkCta:hover {
+  opacity: 0.88;
+}
+
+@media (max-width: 700px) {
+  .planWalk {
+    flex-direction: column;
+  }
+}
+
 .startHere {
   background: var(--color-dark-brown);
   color: var(--color-cream);
