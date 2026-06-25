@@ -66,20 +66,28 @@ export default async function Home() {
       <section className={styles.section}>
         <div className={styles.planWalk}>
           <div className={styles.planWalkText}>
-            <h2 className={styles.sectionTitle}>Plan your walk</h2>
             <p>
-              Tell us how much time you have and what you&rsquo;re into — we&rsquo;ll put
-              together a walking route through Montmartre that skips the queues and the
-              souvenir shops.
+              Answer a few questions and we&rsquo;ll map a Montmartre route made just
+              for you.
             </p>
             <ul className={styles.planWalkList}>
-              <li>Routes from 1 to 4 hours</li>
-              <li>Built around what you love — art, food, history, views</li>
-              <li>Practical stops: cafés, viewpoints, photo spots</li>
+              <li>
+                Pick what you&rsquo;re after (history, art, religious places, iconic
+                cinema locations).
+              </li>
+              <li>Set your pace and how long you&rsquo;ve got on the hill.</li>
+              <li>
+                Choose to stop for a meal or a coffee at one of our recommended spots.
+              </li>
             </ul>
           </div>
           <div className={styles.planWalkCard}>
-            <p className={styles.planWalkCardLabel}>Ready when you are</p>
+            <p className={styles.planWalkCardEyebrow}>Montmartre Walk</p>
+            <h3 className={styles.planWalkCardTitle}>Plan your walk</h3>
+            <p className={styles.planWalkCardText}>
+              Answer a few questions to build a tailor-made route through the streets
+              of the Montmartre hill.
+            </p>
             <a
               href={PLAN_YOUR_WALK_URL}
               target="_blank"
