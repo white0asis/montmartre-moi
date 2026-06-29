@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  gap: 10px;
+  max-width: 360px;
+  margin-top: 4px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(245, 239, 224, 0.06);
+  border: 1px solid rgba(245, 239, 224, 0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--color-cream);
+  font-family: var(--font-body-stack);
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: rgba(245, 239, 224, 0.5);
+}
+
+.button {
+  background: var(--color-sage);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: var(--font-body-stack);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background: #6d8a66;
+}
+
+.confirmation {
+  font-size: 14px;
+  color: var(--color-sage);
+  margin-top: 4px;
+}

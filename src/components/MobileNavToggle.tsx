@@ -32,8 +32,14 @@ export default function MobileNavToggle({ categories }: { categories: NavCategor
                 {cat.name}
               </Link>
             ))}
+            <Link href="/events" onClick={() => setOpen(false)}>
+              Events
+            </Link>
             <Link href="/about" onClick={() => setOpen(false)}>
               About
+            </Link>
+            <Link href="/itineraries" onClick={() => setOpen(false)}>
+              Build your walk
             </Link>
           </nav>
         </div>

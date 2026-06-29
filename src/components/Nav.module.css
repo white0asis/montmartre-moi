@@ -33,6 +33,20 @@
   color: var(--color-terracotta);
 }
 
+.buildWalk {
+  margin-left: auto;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--color-terracotta);
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.buildWalk:hover {
+  background: var(--color-dark-brown);
+  color: #fff !important;
+}
+
 @media (max-width: 860px) {
   .links {
     display: none;

@@ -10,6 +10,8 @@ export type ArticleCardData = {
   publishedAt?: string;
   readingTime?: number;
   category?: { title: string; slug: string } | null;
+  subcategory?: string | null;
+  featured?: boolean;
   author?: { name: string } | null;
 };
 
@@ -49,10 +51,32 @@ export type SpotData = {
   relatedArticles?: ArticleCardData[];
 };
 
+export type WeeklyHours = {
+  monday?: string;
+  tuesday?: string;
+  wednesday?: string;
+  thursday?: string;
+  friday?: string;
+  saturday?: string;
+  sunday?: string;
+};
+
+export type Highlight = { icon?: string; title: string; text?: string };
+
 export type PlaceData = SpotData & {
   type?: string;
+  tagline?: string;
+  highlights?: Highlight[];
+  googleRating?: number;
+  googleReviewCount?: number;
+  mmPick?: boolean;
+  openingHours?: WeeklyHours;
   priceInfo?: string;
+  admissionInfo?: string[];
+  gettingThere?: string[];
   officialWebsite?: string;
+  mapCaption?: string;
+  shortTagline?: string;
 };
 
 export type RestaurantData = SpotData & {
@@ -63,10 +87,83 @@ export type RestaurantData = SpotData & {
   reservation?: string;
   ambiance?: string[];
   dontMiss?: string;
+  shortTagline?: string;
+};
+
+export type NearbySpot = {
+  _id: string;
+  _type: "place" | "restaurant";
+  name: string;
+  slug: string;
+  location: { lat: number; lng: number };
+  shortTagline?: string;
+  type?: string;
+  cuisineType?: string;
+  thumbnail?: SanityImageSource;
 };
 
 export type StaticPageData = {
   title: string;
   slug: string;
   body?: PortableTextBlock[];
+};
+
+export type EventCategory =
+  | "cinema"
+  | "music"
+  | "art"
+  | "walk"
+  | "eat-drink"
+  | "heritage"
+  | "festival"
+  | "market";
+
+export type EventData = {
+  _id: string;
+  title: string;
+  slug: string;
+  category?: EventCategory;
+  schedule?: "oneOff" | "recurring";
+  startDate?: string;
+  endDate?: string;
+  recurrenceText?: string;
+  locationName?: string;
+  place?: { name: string; slug: string; _type: "place" | "restaurant" } | null;
+  price?: string;
+  description?: string;
+  featured?: boolean;
+  mainImage?: SanityImageSource;
+  officialWebsite?: string;
+};
+
+export type ItineraryStop = {
+  name: string;
+  stopType?: string;
+  duration?: string;
+  walkTime?: string;
+  description?: string;
+  badge?: string;
+  place?: { name: string; slug: string; _type: "place" | "restaurant" } | null;
+};
+
+export type ItineraryData = {
+  _id: string;
+  title: string;
+  slug: string;
+  theme?: string;
+  emoji?: string;
+  mainImage?: SanityImageSource;
+  tagline?: string;
+  description?: PortableTextBlock[];
+  durationLabel?: string;
+  distanceKm?: number;
+  difficulty?: "easy" | "moderate" | "challenging";
+  startPoint?: string;
+  startMetro?: string;
+  bestTime?: string;
+  whatWeLove?: Highlight[];
+  stops?: ItineraryStop[];
+  whatYouShouldKnow?: Highlight[];
+  tip?: string;
+  relatedItineraries?: { _id: string; title: string; slug: string; theme?: string; emoji?: string }[];
 };

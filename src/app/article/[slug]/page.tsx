@@ -13,8 +13,10 @@ import type { ArticleCardData, ArticleData } from "@/lib/types";
 import { extractHeadings } from "@/lib/portableText";
 import ArticleBody from "@/components/ArticleBody";
 import ArticleCard from "@/components/ArticleCard";
+import Breadcrumb from "@/components/Breadcrumb";
 import TableOfContents from "@/components/TableOfContents";
 import SocialShare from "@/components/SocialShare";
+import PlanYourWalkCard from "@/components/PlanYourWalkCard";
 import styles from "./article.module.css";
 
 export const revalidate = 3600;
@@ -89,63 +91,94 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className={styles.hero}>
-        {article.category && (
-          <Link href={`/category/${article.category.slug}`} className={styles.eyebrow}>
-            {article.category.name}
-          </Link>
-        )}
-        <h1 className={styles.title}>{article.title}</h1>
-        {article.excerpt && <p className={styles.dek}>{article.excerpt}</p>}
-        <div className={styles.metaBar}>
-          {article.author?.name && <span>{article.author.name}</span>}
-          {article.publishedAt && (
-            <span>
-              {new Date(article.publishedAt).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </span>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          ...(article.category
+            ? [{ label: article.category.name, href: `/category/${article.category.slug}` }]
+            : []),
+        ]}
+      />
+
+      <header className={styles.header}>
+        <div className={styles.headerText}>
+          <h1 className={styles.title}>{article.title}</h1>
+          {article.excerpt && <p className={styles.dek}>{article.excerpt}</p>}
+          {article.author?.name && (
+            <div className={styles.byline}>
+              {article.author.photo ? (
+                <Image
+                  src={urlFor(article.author.photo).width(46).height(46).url()}
+                  alt={article.author.name}
+                  width={46}
+                  height={46}
+                  className={styles.bylineAvatarPhoto}
+                />
+              ) : (
+                <span className={styles.bylineAvatar}>{article.author.name.charAt(0)}</span>
+              )}
+              <div className={styles.bylineInfo}>
+                <span className={styles.bylineName}>{article.author.name}</span>
+                <span className={styles.bylineMeta}>
+                  {article.publishedAt &&
+                    new Date(article.publishedAt).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  {article.publishedAt && article.readingTime ? " · " : ""}
+                  {article.readingTime ? `${article.readingTime} min read` : null}
+                </span>
+              </div>
+            </div>
           )}
-          {article.readingTime ? <span>{article.readingTime} min read</span> : null}
         </div>
+
+        {article.mainImage && (
+          <figure className={styles.headerPhoto}>
+            <Image
+              src={urlFor(article.mainImage).width(900).height(675).url()}
+              alt={article.title}
+              width={900}
+              height={675}
+              className={styles.headerPhotoImg}
+              priority
+            />
+          </figure>
+        )}
       </header>
 
-      {article.mainImage && (
-        <div className={styles.heroImageWrap}>
-          <Image
-            src={urlFor(article.mainImage).width(1600).height(900).url()}
-            alt={article.title}
-            width={1600}
-            height={900}
-            className={styles.heroImage}
-            priority
-          />
-        </div>
-      )}
-
       <div className={styles.layout}>
-        <aside className={styles.tocColumn}>
-          <TableOfContents headings={headings} />
-        </aside>
-
         <article className={styles.contentColumn}>
           {article.body && <ArticleBody value={article.body} />}
+
+          {(article.tags?.length || 0) > 0 && (
+            <div className={styles.tags}>
+              {article.tags!.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
           <SocialShare url={pageUrl} title={article.title} />
 
           {article.author?.name && (
             <div className={styles.authorBlock}>
-              {article.author.photo && (
+              {article.author.photo ? (
                 <Image
-                  src={urlFor(article.author.photo).width(80).height(80).url()}
+                  src={urlFor(article.author.photo).width(64).height(64).url()}
                   alt={article.author.name}
-                  width={80}
-                  height={80}
+                  width={64}
+                  height={64}
                   className={styles.authorPhoto}
                 />
+              ) : (
+                <span className={styles.authorAvatar}>{article.author.name.charAt(0)}</span>
               )}
               <div>
+                <p className={styles.authorEyebrow}>Written by</p>
                 <p className={styles.authorName}>{article.author.name}</p>
                 {article.author.bio && <p className={styles.authorBio}>{article.author.bio}</p>}
               </div>
@@ -153,12 +186,28 @@ export default async function ArticlePage({
           )}
         </article>
 
-        <div className={styles.spacerColumn} aria-hidden />
+        <aside className={styles.sidebar}>
+          <TableOfContents headings={headings} />
+          <PlanYourWalkCard variant="compact" />
+        </aside>
       </div>
+
+      <section className={styles.walkSection}>
+        <PlanYourWalkCard variant="banner" />
+      </section>
 
       {related.length > 0 && (
         <section className={styles.related}>
-          <h2 className={styles.relatedTitle}>You might also like</h2>
+          <div className={styles.relatedHeader}>
+            <h2 className={styles.relatedTitle}>
+              <span className={styles.relatedArrow}>→</span>Keep reading
+            </h2>
+            {article.category && (
+              <Link href={`/category/${article.category.slug}`} className={styles.relatedAll}>
+                All articles →
+              </Link>
+            )}
+          </div>
           <div className={styles.relatedGrid}>
             {related.map((a) => (
               <ArticleCard key={a._id} article={a} />

@@ -11,6 +11,8 @@ const cardFields = groq`
   publishedAt,
   "readingTime": round(length(pt::text(body)) / 5 / 200),
   "category": category->{"title": name, "slug": slug.current},
+  subcategory,
+  featured,
   "author": author->{name}
 `;
 
@@ -66,8 +68,11 @@ export const articleSlugsQuery = groq`*[_type == "article" && defined(slug.curre
 /* ---------- Place / Restaurant pages (shared template) ---------- */
 
 export const placeBySlugQuery = groq`*[_type == "place" && slug.current == $slug][0]{
-  _id, name, "slug": slug.current, type, description, address, location,
-  hours, priceInfo, officialWebsite, bookingLink, gallery, insiderTip,
+  _id, name, "slug": slug.current, type, tagline, description, highlights,
+  googleRating, googleReviewCount, mmPick,
+  address, location, mapCaption, shortTagline,
+  hours, openingHours, priceInfo, admissionInfo, gettingThere,
+  officialWebsite, bookingLink, gallery, insiderTip,
   "relatedArticles": relatedArticles[]->{${cardFields}}
 }`;
 
@@ -84,8 +89,77 @@ export const restaurantSlugsQuery = groq`*[_type == "restaurant" && defined(slug
 // All places + restaurants with coordinates, used to compute "Nearby" client-side
 // (Sanity/GROQ has no built-in geo-distance function on the free tier query layer).
 export const nearbySpotsQuery = groq`*[(_type == "place" || _type == "restaurant") && defined(location)]{
-  _type, name, "slug": slug.current, location
+  _id, _type, name, "slug": slug.current, location, shortTagline,
+  type, cuisineType, "thumbnail": gallery[0]
 }`;
+
+/* ---------- Events ---------- */
+
+export const eventsQuery = groq`*[_type == "event"]{
+  _id,
+  title,
+  "slug": slug.current,
+  category,
+  schedule,
+  startDate,
+  endDate,
+  recurrenceText,
+  locationName,
+  "place": place->{name, "slug": slug.current, _type},
+  price,
+  description,
+  featured,
+  mainImage,
+  officialWebsite
+}`;
+
+/* ---------- Itineraries ---------- */
+
+export const itinerariesQuery = groq`*[_type == "itinerary"] | order(title asc){
+  _id,
+  title,
+  "slug": slug.current,
+  theme,
+  emoji,
+  mainImage,
+  tagline,
+  durationLabel,
+  distanceKm,
+  difficulty,
+  "stopCount": count(stops)
+}`;
+
+export const itineraryBySlugQuery = groq`*[_type == "itinerary" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  theme,
+  emoji,
+  mainImage,
+  tagline,
+  description,
+  durationLabel,
+  distanceKm,
+  difficulty,
+  startPoint,
+  startMetro,
+  bestTime,
+  whatWeLove,
+  stops[]{
+    name,
+    stopType,
+    duration,
+    walkTime,
+    description,
+    badge,
+    "place": place->{name, "slug": slug.current, _type}
+  },
+  whatYouShouldKnow,
+  tip,
+  "relatedItineraries": relatedItineraries[]->{_id, title, "slug": slug.current, theme, emoji}
+}`;
+
+export const itinerarySlugsQuery = groq`*[_type == "itinerary" && defined(slug.current)].slug.current`;
 
 /* ---------- Static pages (About, Contact) ---------- */
 

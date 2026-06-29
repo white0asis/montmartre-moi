@@ -18,7 +18,11 @@ export default async function Nav() {
               {cat.name}
             </Link>
           ))}
+          <Link href="/events">Events</Link>
           <Link href="/about">About</Link>
+          <Link href="/itineraries" className={styles.buildWalk}>
+            Build your walk
+          </Link>
         </nav>
 
         <MobileNavToggle categories={categories} />

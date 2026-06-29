@@ -5,11 +5,11 @@ import type { ArticleCardData, NavCategory } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
 import CategoryTile from "@/components/CategoryTile";
 import Logo from "@/components/Logo";
+import MapStopList from "@/components/MapStopList";
+import PlanYourWalkCard from "@/components/PlanYourWalkCard";
 import styles from "./page.module.css";
 
 export const revalidate = 3600;
-
-const PLAN_YOUR_WALK_URL = "https://montmartre-walk.vercel.app/";
 
 type HomepageData = {
   categories: NavCategory[];
@@ -22,6 +22,15 @@ const startHereSteps = [
   { step: "02", title: "Pick a walk", text: "No itinerary needed. Follow one neighborhood thread — street art, viewpoints, or quiet backstreets." },
   { step: "03", title: "Eat where locals eat", text: "Skip the tourist terraces on the Place du Tertre. Our restaurant guides point past them." },
   { step: "04", title: "Go off-peak", text: "Early morning or after 6pm — the same streets, a different Montmartre." },
+];
+
+// Static editorial facts — same pattern as `startHereSteps` above, no schema
+// needed since this is fixed copy rather than per-article data.
+const montmartreFacts = [
+  { icon: "⛰️", number: "130m", label: "Above sea level", caption: "The highest point in Paris" },
+  { icon: "🏛️", number: "1860", label: "Annexed by Paris", caption: "Independent for centuries before Haussmann’s redesign" },
+  { icon: "🎨", number: "200+", label: "Artists lived here", caption: "Renoir, Picasso, Utrillo — all within a few streets" },
+  { icon: "🍇", number: "1934", label: "The vineyard", caption: "The Clos Montmartre still harvests grapes every October" },
 ];
 
 export default async function Home() {
@@ -54,51 +63,7 @@ export default async function Home() {
       )}
 
       <section className={styles.planWalkSection}>
-        <a
-          href={PLAN_YOUR_WALK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open the Montmartre walk generator"
-          className={styles.planWalk}
-        >
-          <div className={styles.planWalkText}>
-            <p className={styles.planWalkIntro}>
-              Answer a few questions and we&rsquo;ll map a Montmartre route made just
-              for you.
-            </p>
-            <ul className={styles.planWalkList}>
-              <li>
-                <span className={styles.planWalkDot} />
-                <span>
-                  Pick what you&rsquo;re after (history, art, religious places, iconic
-                  cinema locations).
-                </span>
-              </li>
-              <li>
-                <span className={styles.planWalkDot} />
-                <span>Set your pace and how long you&rsquo;ve got on the hill.</span>
-              </li>
-              <li>
-                <span className={styles.planWalkDot} />
-                <span>
-                  Choose to stop for a meal or a coffee at one of our recommended
-                  spots.
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.planWalkVisual}>
-            <div className={styles.planWalkCard}>
-              <span className={styles.planWalkCardEyebrow}>Montmartre Walk</span>
-              <h3 className={styles.planWalkCardTitle}>Plan your walk</h3>
-              <p className={styles.planWalkCardText}>
-                Answer a few questions to build a tailor-made route through the
-                streets of the Montmartre hill.
-              </p>
-              <span className={styles.planWalkCta}>Start</span>
-            </div>
-          </div>
-        </a>
+        <PlanYourWalkCard variant="banner" />
       </section>
 
       {categories.length > 0 && (
@@ -120,6 +85,52 @@ export default async function Home() {
                 <span className={styles.startHereStep}>{s.step}</span>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {recent.length > 0 && (
+        <section className={styles.section}>
+          <MapStopList
+            title="Explore the map"
+            mapQuery="Montmartre, Paris"
+            items={recent.slice(0, 5).map((article) => ({
+              href: `/article/${article.slug}`,
+              icon: "📍",
+              name: article.title,
+              subtitle: article.category?.title,
+            }))}
+          />
+        </section>
+      )}
+
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutInner}>
+          <div className={styles.aboutText}>
+            <span className={styles.aboutEyebrow}>About Montmartre</span>
+            <h2 className={styles.aboutTitle}>
+              A village inside <em>a city</em>
+            </h2>
+            <p>
+              Montmartre has always refused to be fully absorbed. Even after Haussmann&rsquo;s
+              sweeping redesign of Paris, the hilltop village clung to its identity — narrow
+              streets, village squares, the rhythm of neighborhood life.
+            </p>
+            <p>
+              Today it remains Paris&rsquo;s most village-like neighborhood, where locals still
+              gather in the same cafés their grandparents knew, and where the pace of life slows
+              as the hill rises.
+            </p>
+          </div>
+          <div className={styles.factsGrid}>
+            {montmartreFacts.map((fact) => (
+              <div key={fact.label} className={styles.factCard}>
+                <span className={styles.factIcon}>{fact.icon}</span>
+                <span className={styles.factNumber}>{fact.number}</span>
+                <span className={styles.factLabel}>{fact.label}</span>
+                <span className={styles.factCaption}>{fact.caption}</span>
               </div>
             ))}
           </div>

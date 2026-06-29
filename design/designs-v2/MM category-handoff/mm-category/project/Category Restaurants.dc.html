@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"/>
+    <rect x="0" y="0" width="1200" height="72" fill="#ffffff" stroke="#ebe7df" stroke-width="1"/>
+    <rect x="40" y="18" width="80" height="36" rx="4" fill="#ebe7df"/>
+    <rect x="40" y="100" width="1120" height="280" fill="#f7f6f3"/>
+    <rect x="40" y="100" width="660" height="280" fill="#f0ede6"/>
+    <rect x="60" y="130" width="120" height="14" rx="3" fill="#7d9b76" opacity="0.7"/>
+    <rect x="60" y="158" width="420" height="52" rx="4" fill="#241a14" opacity="0.15"/>
+    <rect x="60" y="222" width="380" height="12" rx="3" fill="#6f6760" opacity="0.5"/>
+    <rect x="60" y="242" width="340" height="12" rx="3" fill="#6f6760" opacity="0.5"/>
+    <rect x="720" y="118" width="420" height="120" rx="8" fill="#e8e4db"/>
+    <rect x="720" y="254" width="320" height="24" rx="3" fill="#7d9b76" opacity="0.4"/>
+    <rect x="40" y="420" width="1120" height="2" fill="#7d9b76"/>
+    <rect x="40" y="450" width="160" height="32" rx="16" fill="#7d9b76"/>
+    <rect x="210" y="450" width="120" height="32" rx="16" fill="#ebe7df"/>
+    <rect x="340" y="450" width="120" height="32" rx="16" fill="#ebe7df"/>
+    <rect x="40" y="520" width="340" height="200" rx="8" fill="#f7f6f3"/>
+    <rect x="60" y="540" width="300" height="120" rx="6" fill="#e8e4db"/>
+    <rect x="60" y="672" width="200" height="14" rx="3" fill="#241a14" opacity="0.2"/>
+    <rect x="400" y="520" width="340" height="200" rx="8" fill="#f7f6f3"/>
+    <rect x="420" y="540" width="300" height="120" rx="6" fill="#e8e4db"/>
+    <rect x="420" y="672" width="200" height="14" rx="3" fill="#241a14" opacity="0.2"/>
+    <rect x="760" y="520" width="340" height="200" rx="8" fill="#f7f6f3"/>
+    <rect x="780" y="540" width="300" height="120" rx="6" fill="#e8e4db"/>
+    <rect x="780" y="672" width="200" height="14" rx="3" fill="#241a14" opacity="0.2"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:#ffffff;}
+  </style>
+</helmet>
+
+<div style="--bg:#ffffff;--panel:#f7f6f3;--ink:#241a14;--muted:#6f6760;--line:#ebe7df;--sage:#7d9b76;--terra:#c4622d;--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;background:#ffffff;color:#241a14;font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="#" aria-label="Montmartre Moi — home" style="display:inline-flex;">
+        <img src="public/logo.png" alt="Montmartre Moi" style="height:64px;width:auto;display:block;">
+      </a>
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:30px;font-size:14px;letter-spacing:0.01em;">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+          <a href="#" style="color:{{ cat.navColor }};text-decoration:none;white-space:nowrap;font-weight:{{ cat.navWeight }};" style-hover="color:var(--terra);">{{ cat.name }}</a>
+        </sc-for>
+        <a href="#" style="color:var(--ink);text-decoration:none;" style-hover="color:var(--terra);">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ CATEGORY HEADER ============ -->
+    <section style="border-bottom:1px solid var(--line);background:var(--bg);">
+      <div style="max-width:1180px;margin:0 auto;padding:34px 32px 0;">
+        <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);">
+          <a href="#" style="color:var(--muted);text-decoration:none;" style-hover="color:var(--terra);">Home</a>
+          <span style="opacity:0.5;">/</span>
+          <a href="#" style="color:var(--muted);text-decoration:none;" style-hover="color:var(--terra);">Eat &amp; Drink</a>
+        </nav>
+      </div>
+      <div style="max-width:1180px;margin:0 auto;padding:36px 32px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end;">
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <span style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);font-weight:600;width:fit-content;">Eat &amp; Drink<span style="width:26px;height:1px;background:var(--sage);"></span></span>
+          <h1 style="font-family:var(--serif);font-weight:600;font-size:72px;line-height:1.02;color:var(--ink);">Where Montmartre <span style="font-style:italic;color:var(--sage);">eats</span></h1>
+          <p style="font-size:18px;line-height:1.7;color:var(--muted);max-width:520px;">Past the tourist terraces of the Place du Tertre lies the Montmartre locals actually book a table at — old-guard bistros, natural-wine rooms, and the kitchens worth climbing the hill for.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;padding-bottom:6px;">
+          <div style="position:relative;overflow:hidden;border-radius:10px;background:#e8e4db;aspect-ratio:16/9;border:1px solid var(--line);">
+            <span style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#eceae3,#eceae3 14px,#e4e1d8 14px,#e4e1d8 28px);"></span>
+            <span style="position:absolute;left:14px;bottom:12px;background:rgba(61,43,31,0.75);color:#f5efe0;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:0.06em;padding:5px 9px;border-radius:4px;">PHOTO — RESTAURANTS, MONTMARTRE</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:14px;padding:18px 0;border-top:2px solid var(--sage);">
+            <span style="font-family:var(--serif);font-size:46px;font-weight:600;color:var(--sage);line-height:1;">34</span>
+            <span style="font-size:14px;color:var(--muted);">guides &amp; reviews in this section</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUBCATEGORY FILTER ============ -->
+    <section style="position:sticky;top:93px;z-index:40;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);">
+      <div style="max-width:1180px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+        <!-- type chips -->
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+            <button type="button" onClick="{{ f.select }}" style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.02em;padding:8px 16px;border-radius:999px;cursor:pointer;border:1.5px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};transition:all 0.18s ease;">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <!-- mood dropdown + sort -->
+        <div style="display:flex;align-items:center;gap:10px;flex:0 0 auto;">
+          <div style="position:relative;">
+            <button type="button" onClick="{{ toggleMood }}" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid {{ moodBtnBorder }};background:{{ moodBtnBg }};color:{{ moodBtnColor }};border-radius:999px;padding:8px 15px;transition:all 0.18s ease;">
+              <span style="font-size:14px;">{{ moodCurrentIcon }}</span>{{ moodCurrentLabel }}
+              <svg width="11" height="11" viewBox="0 0 14 14" fill="none" style="transform:{{ moodChev }};transition:transform 0.2s ease;"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <sc-if value="{{ moodOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 36px rgba(36,26,20,0.13);padding:7px;min-width:180px;display:flex;flex-direction:column;gap:2px;">
+                <sc-for list="{{ moods }}" as="m" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ m.select }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-family:var(--sans);font-size:14px;font-weight:{{ m.weight }};cursor:pointer;border:none;background:{{ m.bg }};color:{{ m.color }};border-radius:8px;padding:9px 12px;transition:background 0.15s ease;" style-hover="background:var(--panel);"><span style="width:18px;font-size:15px;">{{ m.icon }}</span>{{ m.label }}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;white-space:nowrap;">Most recent
+            <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="#6f6760" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED RESTAURANT ============ -->
+    <section style="max-width:1180px;margin:0 auto;padding:48px 32px 40px;">
+      <a href="#" style="display:grid;grid-template-columns:1.15fr 1fr;gap:0;align-items:stretch;border:1px solid var(--line);overflow:hidden;text-decoration:none;background:var(--bg);">
+        <div style="position:relative;background:#f1efe9;min-height:420px;overflow:hidden;">
+          <span style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#eceae3,#eceae3 14px,#e4e1d8 14px,#e4e1d8 28px);"></span>
+          <span style="position:absolute;left:18px;bottom:16px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:0.06em;">PHOTO — DINING ROOM, LA MAISON ROSE</span>
+          <span style="position:absolute;left:18px;top:18px;display:inline-flex;align-items:center;gap:7px;background:var(--terra);color:#fff;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:7px 13px;border-radius:999px;">Editor&rsquo;s pick</span>
+        </div>
+        <div style="padding:48px 46px;display:flex;flex-direction:column;justify-content:center;gap:18px;border-left:1px solid var(--line);">
+          <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);font-weight:600;">Bistros · Classic</span>
+          <h2 style="font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.12;color:var(--ink);">The pink house that outlasted every trend on the hill</h2>
+          <p style="font-size:16px;line-height:1.7;color:var(--muted);">La Maison Rose has been painted into a thousand canvases — but behind the famous façade is a kitchen that quietly serves some of the most honest cooking in the 18th. Here&rsquo;s what to order, and when to go.</p>
+          <div style="display:flex;gap:16px;font-size:13px;color:var(--muted);margin-top:4px;"><span>Camille Roussel</span><span>·</span><span>8 min read</span><span>·</span><span>€€</span></div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ============ ARTICLE GRID ============ -->
+    <section style="max-width:1180px;margin:0 auto;padding:8px 32px 24px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 36px;">
+        <sc-for list="{{ articles }}" as="a" hint-placeholder-count="9">
+          <article style="display:flex;flex-direction:column;gap:14px;">
+            <a href="#" style="display:block;overflow:hidden;border-radius:8px;position:relative;background:#f1efe9;border:1px solid var(--line);aspect-ratio:4/3;">
+              <span style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#eceae3,#eceae3 12px,#e4e1d8 12px,#e4e1d8 24px);"></span>
+              <span style="position:absolute;left:12px;bottom:12px;background:rgba(61,43,31,0.8);color:#f5efe0;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:0.06em;padding:5px 9px;border-radius:4px;">{{ a.photo }}</span>
+              <sc-if value="{{ a.badge }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;left:12px;top:12px;background:var(--sage);color:#fff;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:5px 10px;border-radius:999px;">{{ a.badge }}</span>
+              </sc-if>
+            </a>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600;">{{ a.sub }}</span>
+              <span style="font-size:12px;color:var(--muted);">{{ a.price }}</span>
+            </div>
+            <h3 style="font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.22;"><a href="#" style="color:var(--ink);text-decoration:none;" style-hover="color:var(--sage);">{{ a.title }}</a></h3>
+            <p style="font-size:14px;line-height:1.6;color:var(--muted);">{{ a.excerpt }}</p>
+            <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:6px;">{{ a.author }} · {{ a.read }}</div>
+          </article>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:52px;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);border:1.5px solid var(--sage);border-radius:999px;padding:14px 30px;text-decoration:none;transition:background 0.18s ease;" style-hover="background:rgba(125,155,118,0.12);">Load more reviews <span style="color:var(--sage);">↓</span></a>
+      </div>
+    </section>
+
+    <!-- ============ WALK GENERATOR FEATURE ============ -->
+    <section style="max-width:1180px;margin:40px auto 0;padding:8px 32px 8px;">
+      <a href="#" aria-label="Open the Montmartre walk generator" style="display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;background:var(--bg);border:1px solid var(--line);overflow:hidden;text-decoration:none;">
+        <!-- description -->
+        <div style="padding:52px 48px;display:flex;flex-direction:column;justify-content:center;gap:20px;border-right:1px solid var(--line);">
+          <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);font-weight:600;">Montmartre Walk</span>
+          <p style="font-family:var(--serif);font-weight:700;font-size:27px;line-height:1.25;color:var(--ink);max-width:420px;">Answer a few questions and we&rsquo;ll map a Montmartre route made just for you.</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;max-width:400px;">
+            <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--muted);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--sage);margin-top:8px;"></span><span>Pick what you&rsquo;re after (history, art, religious places, iconic cinema locations).</span></li>
+            <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--muted);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--sage);margin-top:8px;"></span><span>Set your pace and how long you&rsquo;ve got on the hill.</span></li>
+            <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--muted);"><span style="flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--sage);margin-top:8px;"></span><span>Choose to stop for a meal or a coffee at one of our recommended spots.</span></li>
+          </ul>
+        </div>
+        <!-- native preview of the generator's start card -->
+        <div style="background:var(--panel);display:flex;align-items:center;justify-content:center;padding:44px 40px;">
+          <div style="width:100%;max-width:380px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:32px 30px;display:flex;flex-direction:column;gap:14px;box-shadow:0 14px 34px rgba(36,26,20,0.08);">
+            <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra);font-weight:600;">Montmartre Walk</span>
+            <h3 style="font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.1;color:var(--ink);">Plan your walk</h3>
+            <p style="font-size:14px;line-height:1.6;color:var(--muted);">Answer a few questions to build a tailor-made route through the streets of the Montmartre hill.</p>
+            <span style="margin-top:8px;display:flex;align-items:center;justify-content:center;background:var(--sage);color:#ffffff;font-family:var(--sans);font-weight:600;font-size:15px;padding:14px 24px;border-radius:8px;">Start</span>
+          </div>
+        </div>
+      </a>
+    </section>
+
+    <!-- ============ MORE FROM EAT & DRINK ============ -->
+    <section style="max-width:1180px;margin:0 auto;padding:56px 32px 72px;">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--sage);padding-bottom:16px;margin-bottom:36px;">
+        <h2 style="font-family:var(--serif);font-weight:600;font-size:30px;color:var(--ink);display:inline-flex;align-items:baseline;gap:14px;"><span style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.04em;color:var(--sage);">→</span>More from Eat &amp; Drink</h2>
+        <a href="#" style="font-size:13px;letter-spacing:0.04em;color:var(--sage);font-weight:600;text-decoration:none;" style-hover="color:var(--terra);">View all →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px;">
+        <sc-for list="{{ more }}" as="a" hint-placeholder-count="4">
+          <a href="#" style="display:flex;flex-direction:column;gap:12px;text-decoration:none;">
+            <span style="display:block;overflow:hidden;border-radius:8px;position:relative;background:#f1efe9;border:1px solid var(--line);aspect-ratio:4/3;">
+              <span style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#eceae3,#eceae3 12px,#e4e1d8 12px,#e4e1d8 24px);"></span>
+            </span>
+            <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);font-weight:600;">{{ a.sub }}</span>
+            <h3 style="font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.24;color:var(--ink);" style-hover="color:var(--sage);">{{ a.title }}</h3>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#3d2b1f;color:#f5efe0;padding:56px 32px 40px;">
+    <div style="max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+      <div style="max-width:300px;display:flex;flex-direction:column;gap:14px;">
+        <span style="font-family:var(--serif);font-size:26px;font-weight:600;color:#f5efe0;">Montmartre Moi</span>
+        <p style="font-size:14px;line-height:1.7;color:rgba(245,239,224,0.65);">An English guide to the village on the hill — written by people who live it.</p>
+      </div>
+      <nav style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:4px;">Explore</span>
+          <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+            <a href="#" style="font-size:14px;color:rgba(245,239,224,0.78);text-decoration:none;" style-hover="color:#f5efe0;">{{ cat.name }}</a>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:4px;">More</span>
+          <a href="#" style="font-size:14px;color:rgba(245,239,224,0.78);text-decoration:none;" style-hover="color:#f5efe0;">About us</a>
+          <a href="#" style="font-size:14px;color:rgba(245,239,224,0.78);text-decoration:none;" style-hover="color:#f5efe0;">The walk generator</a>
+          <a href="#" style="font-size:14px;color:rgba(245,239,224,0.78);text-decoration:none;" style-hover="color:#f5efe0;">Contact</a>
+        </div>
+      </nav>
+    </div>
+    <div style="max-width:1180px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(245,239,224,0.14);font-size:13px;color:rgba(245,239,224,0.5);">© 2026 Montmartre Moi · Made on the hill</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 0, mood: 0, moodOpen: false };
+
+  renderVals() {
+    const cats = [
+      "History & Heritage", "Eat & Drink", "Hidden Gems",
+      "Street Art", "Viewpoints", "Plan Your Visit",
+    ];
+    const categories = cats.map((name, i) => ({
+      _id: "c" + i,
+      name,
+      navColor: name === "Eat & Drink" ? "var(--terra)" : "var(--ink)",
+      navWeight: name === "Eat & Drink" ? 600 : 400,
+    }));
+
+    const filterLabels = ["All", "Bistros", "Wine bars", "Cafés", "Bakeries", "Fine dining"];
+    const filters = filterLabels.map((label, i) => {
+      const active = this.state.filter === i;
+      return {
+        _id: "ft" + i,
+        label,
+        select: () => this.setState({ filter: i }),
+        bg: active ? "var(--sage)" : "transparent",
+        color: active ? "#ffffff" : "var(--ink)",
+        border: active ? "var(--sage)" : "var(--line)",
+      };
+    });
+
+    const moodData = [
+      { label: "Any mood", icon: "" },
+      { label: "Festive", icon: "🥂" },
+      { label: "Family", icon: "👪" },
+      { label: "Romantic", icon: "🕯️" },
+      { label: "Solo", icon: "📖" },
+      { label: "Outdoor", icon: "🌿" },
+    ];
+    const moods = moodData.map((m, i) => {
+      const active = this.state.mood === i;
+      return {
+        _id: "md" + i,
+        label: m.label,
+        icon: m.icon || "·",
+        select: () => this.setState({ mood: i, moodOpen: false }),
+        weight: active ? 600 : 500,
+        bg: active ? "rgba(125,155,118,0.14)" : "transparent",
+        color: active ? "var(--sage)" : "var(--ink)",
+      };
+    });
+    const cur = moodData[this.state.mood];
+    const moodActive = this.state.mood !== 0;
+
+    return {
+      categories,
+      filters,
+      moods,
+      moodOpen: this.state.moodOpen,
+      toggleMood: () => this.setState(s => ({ moodOpen: !s.moodOpen })),
+      moodChev: this.state.moodOpen ? "rotate(180deg)" : "rotate(0deg)",
+      moodCurrentLabel: moodActive ? cur.label : "Mood",
+      moodCurrentIcon: moodActive ? cur.icon : "",
+      moodBtnBg: moodActive ? "rgba(125,155,118,0.14)" : "transparent",
+      moodBtnColor: moodActive ? "var(--sage)" : "var(--ink)",
+      moodBtnBorder: moodActive ? "var(--sage)" : "var(--line)",
+      articles: [
+        { _id: "a1", sub: "Bistros", price: "€€", badge: "Local favorite", photo: "PHOTO — LE RELAIS GASCON", title: "The giant salads that locals climb the hill for", excerpt: "A cult address near Abbesses where the portions are honest and the bill never stings.", author: "Théo Marchand", read: "5 min read" },
+        { _id: "a2", sub: "Wine bars", price: "€€", badge: "", photo: "PHOTO — NATURAL WINE COUNTER", title: "A natural-wine room hidden behind a green door", excerpt: "No sign, no menu — just whatever the owner opened that morning and a short list of small plates.", author: "Camille Roussel", read: "6 min read" },
+        { _id: "a3", sub: "Cafés", price: "€", badge: "", photo: "PHOTO — RUE DES ABBESSES TERRACE", title: "Where to take your morning coffee like a Montmartrois", excerpt: "Five terraces that catch the early sun, ranked by how long they'll let you linger.", author: "Léa Fontaine", read: "4 min read" },
+        { _id: "a4", sub: "Fine dining", price: "€€€", badge: "", photo: "PHOTO — TASTING MENU, RUE LEPIC", title: "The tasting menu worth dressing up for", excerpt: "One of the few hilltop kitchens chasing a star — and quietly getting close.", author: "Camille Roussel", read: "9 min read" },
+        { _id: "a5", sub: "Bakeries", price: "€", badge: "Local favorite", photo: "PHOTO — BAGUETTE, RUE DES MARTYRS", title: "Five bakeries the guidebooks miss", excerpt: "The boulangeries locals actually queue at, including a baguette that won the city prize.", author: "Théo Marchand", read: "5 min read" },
+        { _id: "a6", sub: "Bistros", price: "€€", badge: "", photo: "PHOTO — CORNER BISTRO, RUE CAULAINCOURT", title: "The corner bistro that never updated its menu — thankfully", excerpt: "Steak-frites, an œuf mayo, and a carafe of red. Some things on the hill don't need reinventing.", author: "Léa Fontaine", read: "6 min read" },
+        { _id: "a7", sub: "Wine bars", price: "€€", badge: "", photo: "PHOTO — CAVE À MANGER, RUE VÉRON", title: "A cave à manger where the bottles line the walls", excerpt: "Half wine shop, half kitchen — pick a bottle off the shelf and they'll cook around it.", author: "Camille Roussel", read: "5 min read" },
+        { _id: "a8", sub: "Cafés", price: "€", badge: "", photo: "PHOTO — SALON DE THÉ, RUE DES SAULES", title: "The salon de thé beside the last vineyard", excerpt: "A quiet room with a view of the vines — and a tarte tatin worth the detour.", author: "Léa Fontaine", read: "3 min read" },
+        { _id: "a9", sub: "Bistros", price: "€€", badge: "", photo: "PHOTO — TERRACE, PLACE DU TERTRE EDGE", title: "Eating near the Place du Tertre without the trap", excerpt: "One street back from the painters' square sits the table the tour groups never find.", author: "Théo Marchand", read: "7 min read" },
+      ],
+      more: [
+        { _id: "m1", sub: "Markets", title: "The market street that feeds the whole hill" },
+        { _id: "m2", sub: "Coffee", title: "Montmartre's new wave of specialty roasters" },
+        { _id: "m3", sub: "Sweet", title: "Where to find the best tarte tatin in the 18th" },
+        { _id: "m4", sub: "Apéro", title: "Five spots for a glass before dinner" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

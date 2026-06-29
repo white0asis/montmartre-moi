@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:#ffffff;}
+    @media (max-width:920px){
+      [style*="repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+    }
+    @media (max-width:680px){
+      [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+      [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+      [style*="grid-template-columns:40% 60%"]{grid-template-columns:1fr!important;}
+    }
+  </style>
+</helmet>
+
+<div style="--bg:#ffffff;--panel:#f7f6f3;--ink:#241a14;--muted:#6f6760;--line:#ebe7df;--sage:#7d9b76;--terra:#c4622d;--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;background:#ffffff;color:#241a14;font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="Homepage White.dc.html" aria-label="Montmartre Moi — home" style="display:inline-flex;">
+        <img src="public/logo.png" alt="Montmartre Moi" style="height:64px;width:auto;display:block;">
+      </a>
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:30px;font-size:14px;letter-spacing:0.01em;">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+          <a href="#" style="color:var(--ink);text-decoration:none;white-space:nowrap;" style-hover="color:var(--terra);">{{ cat.name }}</a>
+        </sc-for>
+        <a href="#" style="color:var(--ink);text-decoration:none;" style-hover="color:var(--terra);">About</a>
+        <a href="#" style="color:var(--terra);text-decoration:none;font-weight:600;white-space:nowrap;">Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:72px 32px;min-height:460px;background:var(--bg);max-width:1180px;margin:0 auto;">
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <span style="display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sage);font-weight:600;width:fit-content;"><span style="width:28px;height:1px;background:var(--sage);"></span>Events in Montmartre</span>
+        <p style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;line-height:1.4;color:var(--ink);max-width:480px;">The hill keeps its own calendar — harvest festivals, jazz nights, open-air cinema, and the slow rituals of a village that still throws a party for its grapes.</p>
+        <p style="font-size:16px;line-height:1.7;color:var(--muted);max-width:480px;">Everything worth showing up for this season, from one-off concerts on the Sacr&eacute;-C&oelig;ur steps to the markets and recitals that come around every week.</p>
+      </div>
+      <!-- next-up ticket card + coming up -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;">
+        <div style="width:100%;max-width:380px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;gap:14px;box-shadow:0 14px 34px rgba(36,26,20,0.08);">
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra);font-weight:600;">Next up</span>
+          <span style="font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.05;color:var(--ink);">{{ nextEvent.dateLabel }}</span>
+          <span style="display:inline-flex;align-self:flex-start;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(125,155,118,0.12);padding:5px 11px;border-radius:999px;">{{ nextEvent.category }}</span>
+          <h3 style="font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.2;color:var(--ink);">{{ nextEvent.title }}</h3>
+          <span style="font-size:14px;color:var(--muted);">{{ nextEvent.place }} &middot; {{ nextEvent.time }}</span>
+          <span style="margin-top:6px;display:flex;align-items:center;justify-content:center;background:var(--sage);color:#ffffff;font-family:var(--sans);font-weight:600;font-size:15px;padding:13px 24px;border-radius:8px;">Add to calendar</span>
+        </div>
+        <!-- coming up next: 2 more events -->
+        <div style="width:100%;max-width:380px;display:flex;flex-direction:column;">
+          <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px;">Then on the hill</span>
+          <sc-for list="{{ upNext }}" as="e" hint-placeholder-count="2">
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;padding:13px 2px;border-top:1px solid var(--line);">
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.03em;color:var(--sage);white-space:nowrap;">{{ e.dateShort }}</span>
+              <span style="display:flex;flex-direction:column;gap:3px;">
+                <span style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.2;">{{ e.title }}</span>
+                <span style="font-size:12px;color:var(--muted);">{{ e.place }} &middot; {{ e.time }}</span>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT'S ON ============ -->
+    <section style="max-width:1180px;margin:0 auto;padding:48px 32px 40px;">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--sage);padding-bottom:16px;margin-bottom:20px;">
+        <h2 style="font-family:var(--serif);font-weight:600;font-size:30px;color:var(--ink);display:inline-flex;align-items:baseline;gap:14px;"><span style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.04em;color:var(--sage);">01</span>What&rsquo;s on this season</h2>
+      </div>
+      <!-- category filter bar -->
+      <div role="group" aria-label="Filter events by category" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="8">
+          <sc-if value="{{ f.active }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ f.select }}" style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.01em;padding:9px 18px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:all 0.18s ease;background:var(--sage);color:#ffffff;border:1px solid var(--sage);">{{ f.label }}</button>
+          </sc-if>
+          <sc-if value="{{ f.inactive }}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{ f.select }}" style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.01em;padding:9px 18px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:all 0.18s ease;background:#ffffff;color:var(--ink);border:1px solid var(--line);" style-hover="border-color:var(--sage);color:var(--sage);">{{ f.label }}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <sc-for list="{{ eventMonths }}" as="grp" hint-placeholder-count="3">
+        <div style="margin-top:30px;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:4px;">
+            <span style="font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);">{{ grp.month }}</span>
+            <span style="flex:1;height:1px;background:var(--line);"></span>
+          </div>
+          <p style="font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.4;color:var(--muted);margin-bottom:6px;">{{ grp.intro }}</p>
+          <sc-for list="{{ grp.events }}" as="ev" hint-placeholder-count="3">
+            <a href="#" style="display:grid;grid-template-columns:84px 1fr auto;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;">
+              <!-- Schema.org Event: name, startDate, location, price -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;border-right:1px solid var(--line);padding-right:20px;">
+                <span style="font-family:var(--serif);font-size:32px;font-weight:600;color:var(--ink);line-height:1;">{{ ev.day }}</span>
+                <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);font-weight:600;">{{ ev.weekday }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span style="display:inline-flex;align-self:flex-start;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);font-weight:600;background:rgba(125,155,118,0.12);padding:5px 11px;border-radius:999px;">{{ ev.category }}</span>
+                <span style="font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.2;color:var(--ink);" style-hover="color:var(--sage);">{{ ev.title }}</span>
+                <span style="font-size:13px;color:var(--muted);">{{ ev.place }} &middot; {{ ev.time }}</span>
+              </div>
+              <span style="border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;">{{ ev.price }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </section>
+
+    <!-- ============ FEATURED EVENT (DARK) ============ -->
+    <section style="background:#3d2b1f;color:#f5efe0;padding:34px 32px;overflow:hidden;">
+      <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:40% 60%;gap:48px;align-items:center;position:relative;z-index:1;border-right:1px solid rgba(245,239,224,0.08);">
+        <!-- left column -->
+        <div style="padding-right:40px;">
+          <span style="display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7d9b76;font-weight:600;margin-bottom:16px;">Don&rsquo;t miss<span style="width:24px;height:1px;background:#7d9b76;"></span></span>
+          <h2 style="font-family:var(--serif);font-weight:600;font-size:32px;line-height:1.15;color:#f5efe0;margin-bottom:14px;">F&ecirc;te des Vendanges <span style="font-style:italic;color:#7d9b76;">de Montmartre</span></h2>
+          <p style="font-size:15px;line-height:1.7;color:rgba(245,239,224,0.75);margin-bottom:16px;">For five days every October the hill celebrates its own grape harvest — parades down the Rue des Saules, tastings in the squares, and fireworks over the Sacr&eacute;-C&oelig;ur.</p>
+          <a href="#" style="display:inline-block;font-size:15px;color:#7d9b76;text-decoration:underline;font-weight:600;">See the full programme →</a>
+        </div>
+        <!-- right column: 2x2 grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(125,155,118,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:2px;">📅</div>
+            <span style="font-family:var(--serif);font-size:26px;font-weight:700;color:#f5efe0;line-height:1.1;">Oct 7–11</span>
+            <span style="font-weight:600;color:#f5efe0;font-size:14px;">Five days</span>
+            <span style="font-size:13px;color:rgba(245,239,224,0.65);">The hill&rsquo;s biggest autumn festival</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(125,155,118,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:2px;">📍</div>
+            <span style="font-family:var(--serif);font-size:26px;font-weight:700;color:#f5efe0;line-height:1.1;">Clos</span>
+            <span style="font-weight:600;color:#f5efe0;font-size:14px;">Rue des Saules</span>
+            <span style="font-size:13px;color:rgba(245,239,224,0.65);">Parades, tastings and fireworks</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(125,155,118,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:2px;">🍇</div>
+            <span style="font-family:var(--serif);font-size:26px;font-weight:700;color:#f5efe0;line-height:1.1;">1934</span>
+            <span style="font-weight:600;color:#f5efe0;font-size:14px;">First held</span>
+            <span style="font-size:13px;color:rgba(245,239,224,0.65);">A toast to Paris&rsquo;s last vineyard</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(125,155,118,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:2px;">🎟️</div>
+            <span style="font-family:var(--serif);font-size:26px;font-weight:700;color:#f5efe0;line-height:1.1;">Free</span>
+            <span style="font-weight:600;color:#f5efe0;font-size:14px;">Most events</span>
+            <span style="font-size:13px;color:rgba(245,239,224,0.65);">A few tastings are ticketed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVERY WEEK ============ -->
+    <section style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:72px 32px;margin:0;">
+      <div style="max-width:1180px;margin:0 auto;">
+        <h2 style="font-family:var(--serif);font-weight:600;color:var(--ink);font-size:30px;margin-bottom:36px;display:inline-flex;align-items:baseline;gap:14px;"><span style="font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.04em;color:var(--sage);">02</span>Every week on the hill</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+          <sc-for list="{{ recurring }}" as="r" hint-placeholder-count="6">
+            <a href="#" style="display:flex;flex-direction:column;gap:14px;padding:28px;background:var(--bg);border:2.5px solid var(--sage);border-radius:16px;text-decoration:none;transition:background 0.2s ease,transform 0.2s ease;" style-hover="background:rgba(125,155,118,0.12);transform:translateY(-2px);">
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <span style="font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);">{{ r.name }}</span>
+                <span style="font-size:12px;color:var(--muted);font-weight:600;">{{ r.when }}</span>
+              </div>
+              <p style="font-size:14px;line-height:1.6;color:var(--muted);">{{ r.description }}</p>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--sage);font-weight:600;margin-top:8px;">Details <span style="font-size:16px;">→</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#3d2b1f;color:#f5efe0;padding:64px 32px 36px;">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1.6fr;gap:56px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <span style="font-family:var(--serif);font-size:26px;font-weight:600;color:#f5efe0;">Montmartre Moi</span>
+        <p style="font-size:14px;line-height:1.7;color:rgba(245,239,224,0.7);max-width:280px;">An English guide to the village on the hill &mdash; its streets, its history, and the people who keep it alive.</p>
+      </div>
+      <nav aria-label="Footer" style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#7d9b76;font-weight:600;margin-bottom:6px;">Explore</span>
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+          <a href="#" style="font-size:14px;color:rgba(245,239,224,0.8);text-decoration:none;" style-hover="color:#7d9b76;">{{ cat.name }}</a>
+        </sc-for>
+      </nav>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#7d9b76;font-weight:600;">The newsletter</span>
+        <p style="font-size:14px;line-height:1.7;color:rgba(245,239,224,0.7);max-width:320px;">One email a month &mdash; a new walk, a place worth your time, no noise.</p>
+        <div style="display:flex;gap:10px;max-width:360px;margin-top:4px;">
+          <input type="email" placeholder="your@email.com" aria-label="Email address" style="flex:1;min-width:0;background:rgba(245,239,224,0.06);border:1px solid rgba(245,239,224,0.2);border-radius:8px;padding:12px 14px;color:#f5efe0;font-family:var(--sans);font-size:14px;">
+          <button type="button" style="background:#7d9b76;color:#ffffff;border:none;border-radius:8px;padding:12px 20px;font-family:var(--sans);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;" style-hover="background:#6d8a66;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:44px auto 0;padding-top:24px;border-top:1px solid rgba(245,239,224,0.12);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <span style="font-size:13px;color:rgba(245,239,224,0.55);">&copy; 2026 Montmartre Moi &middot; Made in Paris, 18e</span>
+      <div style="display:flex;gap:22px;font-size:13px;">
+        <a href="#" style="color:rgba(245,239,224,0.7);text-decoration:none;" style-hover="color:#7d9b76;">Instagram</a>
+        <a href="#" style="color:rgba(245,239,224,0.7);text-decoration:none;" style-hover="color:#7d9b76;">Newsletter</a>
+        <a href="#" style="color:rgba(245,239,224,0.7);text-decoration:none;" style-hover="color:#7d9b76;">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: "All" };
+  renderVals() {
+    const filter = this.state.filter;
+    const filterNames = ["All", "Cinema", "Music", "Art", "Walk", "Eat & Drink", "Heritage", "Festival"];
+    const filters = filterNames.map(f => ({
+      _id: f, label: f,
+      active: filter === f,
+      inactive: filter !== f,
+      select: () => this.setState({ filter: f }),
+    }));
+    const intros = {
+      July: "Long evenings and open-air culture on the Butte.",
+      August: "The hill slows down — and rewards those who stay.",
+      September: "Montmartre wakes up. The best month to visit.",
+    };
+    const rawMonths = [
+      { _id: "jul", month: "July", events: [
+        { _id: "e1", day: "04", weekday: "Fri", category: "Cinema", title: "Open-air cinema under the hill", place: "Square Louise-Michel", time: "9:30pm", price: "Free" },
+        { _id: "e2", day: "12", weekday: "Sat", category: "Music", title: "Eve-of-Bastille concert on the steps", place: "Sacré-Cœur parvis", time: "8:00pm", price: "Free" },
+        { _id: "e3", day: "14", weekday: "Mon", category: "Festival", title: "Bastille Day fireworks from the hill", place: "Square Nadar", time: "11:00pm", price: "Free" },
+        { _id: "e4", day: "20", weekday: "Sun", category: "Music", title: "Gypsy-jazz night at Le Sancerre", place: "Rue des Abbesses", time: "9:00pm", price: "€12" },
+      ]},
+      { _id: "aug", month: "August", events: [
+        { _id: "e5", day: "02", weekday: "Sat", category: "Art", title: "Painters' morning on the Place du Tertre", place: "Place du Tertre", time: "8:00am", price: "Free" },
+        { _id: "e6", day: "16", weekday: "Sat", category: "Walk", title: "Montmartre of the Commune — guided walk", place: "Meet at Anvers", time: "10:30am", price: "€18" },
+        { _id: "e7", day: "24", weekday: "Sun", category: "Eat & Drink", title: "Summer tasting at the Clos vineyard", place: "Clos Montmartre", time: "6:00pm", price: "€25" },
+      ]},
+      { _id: "sep", month: "September", events: [
+        { _id: "e8", day: "06", weekday: "Sat", category: "Art", title: "Gallery night: the Abbesses vernissages", place: "Rue des Abbesses", time: "7:00pm", price: "Free" },
+        { _id: "e9", day: "20", weekday: "Sat", category: "Heritage", title: "Heritage Days: inside the Clos Montmartre", place: "Rue des Saules", time: "All day", price: "Free" },
+        { _id: "e10", day: "27", weekday: "Sat", category: "Music", title: "Organ recital at the Sacré-Cœur", place: "Sacré-Cœur", time: "4:00pm", price: "Free" },
+      ]},
+    ];
+    const eventMonths = rawMonths
+      .map(g => ({ _id: g._id, month: g.month, intro: intros[g.month], events: g.events.filter(e => filter === "All" || e.category === filter) }))
+      .filter(g => g.events.length > 0);
+    return {
+      filters,
+      categories: [
+        { _id: "c1", name: "History & Heritage" },
+        { _id: "c2", name: "Eat & Drink" },
+        { _id: "c3", name: "Hidden Gems" },
+        { _id: "c4", name: "Street Art" },
+        { _id: "c5", name: "Viewpoints" },
+        { _id: "c6", name: "Plan Your Visit" },
+      ],
+      nextEvent: {
+        dateLabel: "Fri 4 July",
+        category: "Cinema",
+        title: "Open-air cinema under the hill",
+        place: "Square Louise-Michel",
+        time: "9:30pm",
+      },
+      upNext: [
+        { _id: "u1", dateShort: "Sat 12 Jul", title: "Eve-of-Bastille concert on the steps", place: "Sacré-Cœur parvis", time: "8:00pm" },
+        { _id: "u2", dateShort: "Mon 14 Jul", title: "Bastille Day fireworks from the hill", place: "Square Nadar", time: "11:00pm" },
+      ],
+      eventMonths,
+      recurring: [
+        { _id: "w1", name: "Marché Saint-Pierre", when: "Monday – Saturday", description: "The fabric and textile halls at the foot of the hill — a Montmartre institution since the 1920s." },
+        { _id: "w2", name: "Painters of the Place du Tertre", when: "Daily", description: "The open-air easels that have crowded the old village square for over a century." },
+        { _id: "w3", name: "Jazz at Le Sancerre", when: "Thursday evenings", description: "Gypsy-jazz sessions in a corner bar on the Rue des Abbesses — no cover, arrive early." },
+        { _id: "w4", name: "Sunday market, Rue Lepic", when: "Sunday mornings", description: "A small flea of vintage finds, old books and bric-à-brac along the market street." },
+        { _id: "w5", name: "Organ recital, Sacré-Cœur", when: "Sunday afternoons", description: "Free recitals on the basilica's grand organ, beneath the dome." },
+        { _id: "w6", name: "Pétanque at Square Nadar", when: "Weekends", description: "Locals' boules with the best view in Paris — bring nothing but time." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

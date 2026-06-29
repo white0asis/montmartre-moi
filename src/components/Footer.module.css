@@ -7,11 +7,18 @@
 .inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 24px 32px;
-  display: flex;
-  flex-wrap: wrap;
+  padding: 56px 24px 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.6fr;
   gap: 40px;
-  justify-content: space-between;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 
 .brand {
@@ -26,32 +33,69 @@
   color: var(--color-cream-dark);
 }
 
+.colLabel {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+  font-weight: 600;
+}
+
 .links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-self: flex-start;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .links a {
-  color: var(--color-cream);
+  color: rgba(245, 239, 224, 0.85);
+  font-size: 14px;
 }
 
 .links a:hover {
   color: var(--color-sage);
 }
 
-.instagram {
-  color: var(--color-sage);
-  font-weight: 600;
-  align-self: flex-start;
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.newsletterText {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(245, 239, 224, 0.7);
+  max-width: 320px;
+}
+
+.bottomRow {
+  max-width: 1200px;
+  margin: 44px auto 0;
+  padding: 24px 24px 32px;
+  border-top: 1px solid rgba(245, 239, 224, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .copyright {
-  text-align: center;
   font-size: 13px;
   color: var(--color-cream-dark);
-  padding: 20px 24px 32px;
-  border-top: 1px solid rgba(245, 239, 224, 0.12);
-  margin-top: 24px;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 22px;
+  font-size: 13px;
+}
+
+.bottomLinks a {
+  color: rgba(245, 239, 224, 0.7);
+}
+
+.bottomLinks a:hover {
+  color: var(--color-sage);
 }

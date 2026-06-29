@@ -1,0 +1,28 @@
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+  font-size: 13px;
+  color: var(--color-dark-brown);
+  opacity: 0.55;
+}
+
+.segment {
+  display: inline;
+}
+
+.link {
+  color: inherit;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.current {
+  opacity: 1;
+}
+
+.sep {
+  margin: 0 8px;
+}

@@ -7,9 +7,14 @@ import styles from "./ArticleCard.module.css";
 export default function ArticleCard({
   article,
   size = "regular",
+  eyebrow,
 }: {
   article: ArticleCardData;
   size?: "large" | "regular";
+  /** Overrides the default "linked category name" eyebrow with a plain text
+   * label — used on category pages to show the subcategory instead, since
+   * linking back to the category you're already on isn't useful there. */
+  eyebrow?: string;
 }) {
   return (
     <article className={`${styles.card} ${size === "large" ? styles.large : ""}`}>
@@ -27,10 +32,14 @@ export default function ArticleCard({
         )}
       </Link>
       <div className={styles.body}>
-        {article.category && (
-          <Link href={`/category/${article.category.slug}`} className={styles.eyebrow}>
-            {article.category.title}
-          </Link>
+        {eyebrow ? (
+          <span className={styles.eyebrow}>{eyebrow}</span>
+        ) : (
+          article.category && (
+            <Link href={`/category/${article.category.slug}`} className={styles.eyebrow}>
+              {article.category.title}
+            </Link>
+          )
         )}
         <h3 className={styles.title}>
           <Link href={`/article/${article.slug}`}>{article.title}</Link>
