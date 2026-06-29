@@ -43,6 +43,20 @@ export const articlesByCategoryQuery = groq`*[_type == "article" && category->sl
 
 export const categorySlugsQuery = groq`*[_type == "category" && defined(slug.current)].slug.current`;
 
+// Restaurant documents have no `category` reference of their own — there's
+// only one category they're relevant to ("Eat & Drink"), so the category
+// page fetches all of them directly rather than filtering by a field that
+// doesn't exist on the schema yet.
+export const allRestaurantsQuery = groq`*[_type == "restaurant" && defined(slug.current)] | order(name asc){
+  _id,
+  name,
+  "slug": slug.current,
+  cuisineType,
+  priceRange,
+  shortTagline,
+  "mainImage": gallery[0]
+}`;
+
 /* ---------- Article page ---------- */
 
 export const articleBySlugQuery = groq`*[_type == "article" && slug.current == $slug][0]{

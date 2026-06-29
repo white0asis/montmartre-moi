@@ -199,6 +199,27 @@
   }
 }
 
+.restaurantsSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.restaurantsTitle {
+  font-size: 22px;
+  color: var(--color-dark-brown);
+  border-top: 2px solid var(--color-sage);
+  padding-top: 16px;
+  margin: 40px auto 0;
+  max-width: 1200px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.guidesTitle {
+  margin-top: 56px;
+}
+
 .grid {
   max-width: 1200px;
   margin: 40px auto 0;

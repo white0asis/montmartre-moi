@@ -5,15 +5,23 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/image";
 import { sanityClient } from "@/sanity/client";
 import {
+  allRestaurantsQuery,
   articlesByCategoryQuery,
   categoryBySlugQuery,
   categorySlugsQuery,
 } from "@/sanity/queries";
-import type { ArticleCardData } from "@/lib/types";
+import type { ArticleCardData, RestaurantCardData } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
+import RestaurantCard from "@/components/RestaurantCard";
 import Breadcrumb from "@/components/Breadcrumb";
 import PlanYourWalkCard from "@/components/PlanYourWalkCard";
 import styles from "./category.module.css";
+
+// Restaurant documents don't carry a `category` reference (see allRestaurantsQuery),
+// so they can't be filtered by slug like articles. This is the one category page
+// where they're relevant, so it's special-cased here rather than adding a field
+// that would otherwise always point at the same single category.
+const RESTAURANTS_CATEGORY_SLUG = "restaurants-and-cafes";
 
 export const revalidate = 3600;
 
@@ -64,9 +72,14 @@ export default async function CategoryPage({
   const { slug } = await params;
   const { sub, limit: limitParam } = await searchParams;
 
-  const [category, allArticles] = await Promise.all([
+  const isRestaurantsCategory = slug === RESTAURANTS_CATEGORY_SLUG;
+
+  const [category, allArticles, restaurants] = await Promise.all([
     sanityClient.fetch<CategoryDoc | null>(categoryBySlugQuery, { slug }),
     sanityClient.fetch<ArticleCardData[]>(articlesByCategoryQuery, { slug }),
+    isRestaurantsCategory
+      ? sanityClient.fetch<RestaurantCardData[]>(allRestaurantsQuery)
+      : Promise.resolve<RestaurantCardData[]>([]),
   ]);
 
   if (!category) notFound();
@@ -157,9 +170,26 @@ export default async function CategoryPage({
         </section>
       )}
 
+      {restaurants.length > 0 && (
+        <section className={styles.restaurantsSection}>
+          <h2 className={styles.restaurantsTitle}>The directory</h2>
+          <div className={styles.grid}>
+            {restaurants.map((restaurant) => (
+              <RestaurantCard key={restaurant._id} restaurant={restaurant} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {restaurants.length > 0 && allArticles.length > 0 && (
+        <h2 className={`${styles.restaurantsTitle} ${styles.guidesTitle}`}>Guides & reviews</h2>
+      )}
+
       <section className={styles.grid}>
         {visible.length === 0 ? (
-          <p className={styles.empty}>No articles published in this category yet.</p>
+          restaurants.length === 0 && (
+            <p className={styles.empty}>No articles published in this category yet.</p>
+          )
         ) : (
           visible.map((article) => (
             <ArticleCard key={article._id} article={article} eyebrow={article.subcategory ?? undefined} />

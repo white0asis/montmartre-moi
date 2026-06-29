@@ -9,7 +9,10 @@ import { type NextRequest, NextResponse } from "next/server";
 const ROUTES_BY_TYPE: Record<string, (slug?: string) => string[]> = {
   article: (slug) => ["/", ...(slug ? [`/article/${slug}`] : [])],
   place: (slug) => (slug ? [`/place/${slug}`] : []),
-  restaurant: (slug) => (slug ? [`/restaurant/${slug}`] : []),
+  // Also revalidate the Eat & Drink category page, since it lists all
+  // restaurant docs directly (see allRestaurantsQuery) rather than via a
+  // category reference field.
+  restaurant: (slug) => [...(slug ? [`/restaurant/${slug}`] : []), "/category/restaurants-and-cafes"],
   category: (slug) => ["/", ...(slug ? [`/category/${slug}`] : [])],
   author: () => ["/"],
   page: (slug) => (slug ? [`/${slug}`] : []),

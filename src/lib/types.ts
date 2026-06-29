@@ -17,6 +17,16 @@ export type ArticleCardData = {
 
 export type NavCategory = { _id: string; name: string; slug: string };
 
+export type RestaurantCardData = {
+  _id: string;
+  name: string;
+  slug: string;
+  mainImage?: SanityImageSource;
+  cuisineType?: string;
+  priceRange?: string;
+  shortTagline?: string;
+};
+
 export type ArticleData = {
   _id: string;
   title: string;
