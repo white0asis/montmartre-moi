@@ -4,12 +4,12 @@
    ========================================================================== */
 
 :root {
-  /* Palette de couleurs */
-  --color-cream: #f5efe0; /* Fond principal de toutes les pages */
+  /* Palette de couleurs — DS v2 (blanc dominant, cf. design/designs-v2) */
+  --color-cream: #ffffff; /* Fond principal de toutes les pages */
   --color-dark-brown: #3d2b1f; /* Texte principal, footer, blocs sombres */
   --color-sage: #7d9b76; /* Accent principal, CTA, tags, hover */
   --color-terracotta: #c4622d; /* Accent chaud, tags catégorie, liens */
-  --color-cream-dark: #ede5d0; /* Bordures, séparateurs, fonds secondaires */
+  --color-cream-dark: #ece7dc; /* Bordures, séparateurs, fonds secondaires (panels) */
 
   /* Typographie */
   --font-heading-stack: var(--font-heading), "Cormorant Garamond", serif;
