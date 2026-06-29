@@ -1,24 +1,77 @@
+/* ---------- Hero ---------- */
+
 .hero {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
   align-items: center;
-  text-align: center;
-  gap: 18px;
-  padding: 80px 24px 64px;
-  max-width: 700px;
+  padding: 72px 24px;
+  min-height: 460px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.heroTitle {
-  font-style: italic;
-  font-size: 44px;
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+  }
 }
 
-.heroSubtitle {
-  font-size: 18px;
-  opacity: 0.85;
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+  font-weight: 600;
+  width: fit-content;
+}
+
+.heroEyebrowLine {
+  width: 28px;
+  height: 1px;
+  background: var(--color-sage);
+}
+
+.heroQuote {
+  font-family: var(--font-heading-stack);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--color-dark-brown);
   max-width: 480px;
 }
+
+.heroBody {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 480px;
+}
+
+.heroImageWrap {
+  width: 100%;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  border: 2.5px solid var(--color-sage);
+  border-radius: 12px;
+  display: block;
+}
+
+/* ---------- Shared section / numbered headers ---------- */
 
 .section {
   max-width: 1200px;
@@ -26,15 +79,50 @@
   padding: 48px 24px;
 }
 
+.numberedHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-sage);
+  padding-bottom: 16px;
+  margin-bottom: 36px;
+}
+
 .sectionTitle {
   font-size: 30px;
-  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
 }
+
+.numberedHeaderInline {
+  font-size: 30px;
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  color: var(--color-dark-brown);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  border-bottom: 2px solid var(--color-sage);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.sectionNumber {
+  font-family: var(--font-body-stack);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-sage);
+}
+
+/* ---------- Category grid ---------- */
 
 .categoryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
 @media (max-width: 700px) {
@@ -43,9 +131,11 @@
   }
 }
 
+/* ---------- Editor's picks ---------- */
+
 .picksGrid {
   display: flex;
-  gap: 32px;
+  gap: 44px;
   flex-wrap: wrap;
 }
 
@@ -59,12 +149,80 @@
   min-width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
+
+.secondaryPick {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-top: 1px solid var(--color-cream-dark);
+}
+
+.secondaryPickImage {
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--color-panel);
+  border: 1px solid var(--color-cream-dark);
+  width: 104px;
+  height: 104px;
+}
+
+.secondaryPickImage img {
+  width: 104px;
+  height: 104px;
+  object-fit: cover;
+  display: block;
+}
+
+.secondaryPickPlaceholder {
+  width: 104px;
+  height: 104px;
+  background: linear-gradient(135deg, var(--color-cream-dark), var(--color-sage));
+}
+
+.secondaryPickBody {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.secondaryPickEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
+.secondaryPickTitle {
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.secondaryPickTitle a {
+  color: var(--color-dark-brown);
+}
+
+.secondaryPickTitle a:hover {
+  color: var(--color-sage);
+}
+
+.secondaryPickMeta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+/* ---------- Recently published ---------- */
 
 .recentGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 36px;
 }
 
@@ -80,16 +238,21 @@
   }
 }
 
+/* ---------- Plan your walk ---------- */
+
 .planWalkSection {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 24px 48px;
 }
 
+/* ---------- Start here ---------- */
+
 .startHere {
-  background: var(--color-dark-brown);
-  color: var(--color-cream);
-  padding: 64px 24px;
+  background: var(--color-panel);
+  border-top: 1px solid var(--color-cream-dark);
+  border-bottom: 1px solid var(--color-cream-dark);
+  padding: 72px 24px;
   margin: 32px 0;
 }
 
@@ -99,15 +262,18 @@
 }
 
 .startHereTitle {
-  color: var(--color-cream);
+  color: var(--color-dark-brown);
   font-size: 30px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
 }
 
 .startHereGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  gap: 36px;
 }
 
 @media (max-width: 900px) {
@@ -116,36 +282,138 @@
   }
 }
 
+.startHereCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 2px solid var(--color-sage);
+}
+
 .startHereCard h3 {
-  color: var(--color-cream);
-  font-size: 19px;
-  margin: 10px 0 8px;
+  color: var(--color-dark-brown);
+  font-size: 21px;
+  margin: 0;
 }
 
 .startHereCard p {
   font-size: 14px;
-  color: var(--color-cream-dark);
+  color: var(--color-muted);
+  margin: 0;
 }
 
 .startHereStep {
   font-family: var(--font-heading-stack);
-  font-size: 26px;
+  font-size: 30px;
   color: var(--color-sage);
 }
 
+/* ---------- Map + articles ---------- */
+
+.mapArticlesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .mapArticlesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mapSticky {
+  position: sticky;
+  top: 96px;
+}
+
+.mapFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.mapEmbed {
+  object-fit: contain;
+}
+
+.mapCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-sage);
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 16px 28px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 28px;
+}
+
+.mapCta:hover {
+  background: var(--color-dark-brown);
+  color: #fff;
+}
+
+.mapList {
+  display: flex;
+  flex-direction: column;
+}
+
+.mapListItem {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-cream-dark);
+}
+
+.mapListThumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--color-cream-dark);
+}
+
+.mapListThumbPlaceholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  background: var(--color-panel);
+  border: 1px solid var(--color-cream-dark);
+}
+
+.mapListTitle {
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--color-dark-brown);
+}
+
+.mapListItem:hover .mapListTitle {
+  color: var(--color-sage);
+}
+
+/* ---------- About Montmartre ---------- */
+
 .aboutSection {
-  background: var(--color-cream-dark);
-  padding: 64px 24px;
-  margin: 32px 0;
+  background: var(--color-dark-brown);
+  color: #f5efe0;
+  padding: 56px 24px;
 }
 
 .aboutInner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 0.8fr 1fr;
-  gap: 56px;
-  align-items: center;
+  grid-template-columns: 2fr 3fr;
+  gap: 60px;
+  align-items: start;
 }
 
 @media (max-width: 800px) {
@@ -162,9 +430,9 @@
 }
 
 .aboutText p {
-  font-size: 15px;
-  line-height: 1.75;
-  opacity: 0.8;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(245, 239, 224, 0.75);
 }
 
 .aboutEyebrow {
@@ -178,10 +446,21 @@
 .aboutTitle {
   font-size: 32px;
   line-height: 1.2;
+  color: #f5efe0;
 }
 
 .aboutTitle em {
   color: var(--color-sage);
+  font-style: italic;
+}
+
+.aboutCta {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--color-sage);
+  text-decoration: underline;
+  font-weight: 600;
+  margin-top: 8px;
 }
 
 .factsGrid {
@@ -204,37 +483,89 @@
   font-family: var(--font-heading-stack);
   font-size: 30px;
   font-weight: 700;
-  color: var(--color-dark-brown);
+  color: #f5efe0;
 }
 
 .factLabel {
   font-size: 14px;
   font-weight: 600;
+  color: #f5efe0;
 }
 
 .factCaption {
   font-size: 12px;
-  opacity: 0.65;
+  color: rgba(245, 239, 224, 0.65);
 }
 
-.editorialBreak {
+/* ---------- Favorites + FAQ ---------- */
+
+.favoritesFaqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .favoritesFaqGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.favoriteCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 4 / 3;
+  background: var(--color-cream-dark);
+}
+
+.favoriteImage {
+  object-fit: cover;
+}
+
+.favoritePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-cream-dark), var(--color-sage));
+}
+
+.favoriteOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(36, 26, 20, 0.72) 0%, rgba(36, 26, 20, 0.18) 48%, rgba(36, 26, 20, 0) 78%);
+}
+
+.favoriteText {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-  padding: 64px 24px 96px;
-  max-width: 640px;
-  margin: 0 auto;
+  gap: 6px;
 }
 
-.editorialIllustration {
+.favoriteEyebrow {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
   opacity: 0.85;
+  font-weight: 600;
 }
 
-.editorialQuote {
+.favoriteTitle {
   font-family: var(--font-heading-stack);
-  font-style: italic;
-  font-size: 24px;
-  color: var(--color-dark-brown);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.2;
+  color: #fff;
 }

@@ -10,6 +10,8 @@
   --color-sage: #7d9b76; /* Accent principal, CTA, tags, hover */
   --color-terracotta: #c4622d; /* Accent chaud, tags catégorie, liens */
   --color-cream-dark: #ece7dc; /* Bordures, séparateurs, fonds secondaires (panels) */
+  --color-panel: #f7f6f3; /* Bandeaux clairs (Start here, grille catégories, FAQ) */
+  --color-muted: #6f6760; /* Texte secondaire (légendes, descriptions, méta) */
 
   /* Typographie */
   --font-heading-stack: var(--font-heading), "Cormorant Garamond", serif;

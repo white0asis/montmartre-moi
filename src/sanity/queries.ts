@@ -20,7 +20,8 @@ const cardFields = groq`
 
 export const homepageQuery = groq`{
   "categories": *[_type == "category"] | order(name asc) [0...6]{
-    _id, name, "slug": slug.current, shortDescription
+    _id, name, "slug": slug.current, shortDescription,
+    "articleCount": count(*[_type == "article" && references(^._id)])
   },
   "editorsPicks": *[_type == "article" && featured == true] | order(publishedAt desc) [0...3]{
     ${cardFields}

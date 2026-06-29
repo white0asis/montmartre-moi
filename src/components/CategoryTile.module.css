@@ -1,25 +1,54 @@
 .tile {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 32px 16px;
-  background: var(--color-cream-dark);
-  border-radius: 4px;
-  min-height: 120px;
-  transition: background 0.2s ease;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  background: var(--color-panel);
+  border: 2.5px solid var(--color-sage);
+  border-radius: 16px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .tile:hover {
-  background: var(--color-sage);
+  background: rgba(125, 155, 118, 0.15);
+  transform: translateY(-2px);
 }
 
-.tile:hover .name {
-  color: var(--color-cream);
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .name {
   font-family: var(--font-heading-stack);
-  font-size: 19px;
+  font-size: 24px;
+  font-weight: 600;
   color: var(--color-dark-brown);
+}
+
+.count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-sage);
+  margin-top: 8px;
+}
+
+.arrow {
+  font-size: 16px;
 }
