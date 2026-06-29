@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { sanityClient } from "@/sanity/client";
 import { eventsQuery } from "@/sanity/queries";
-import type { EventData } from "@/lib/types";
+import type { EventCategory, EventData } from "@/lib/types";
 import Breadcrumb from "@/components/Breadcrumb";
 import {
   eventDay,
@@ -60,7 +60,7 @@ export default async function EventsPage({
   // upcoming events — same approach as the Category page's subcategory
   // filter, no separate taxonomy to keep in sync.
   const categoriesInUse = Array.from(
-    new Set(oneOff.map((e) => e.category).filter((c): c is string => Boolean(c)))
+    new Set(oneOff.map((e) => e.category).filter((c): c is EventCategory => Boolean(c)))
   );
 
   const filtered = cat ? oneOff.filter((e) => e.category === cat) : oneOff;
